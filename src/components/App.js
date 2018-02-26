@@ -65,6 +65,7 @@ class App extends Component {
     const firstPath = getFirstPath(flow);
     const previousPath = getPreviousPath(flow, currentPath);
     const nextPath = getNextPath(flow, currentPath);
+    const search = this.props.location.search;
 
     return (
       <div className="app">
@@ -72,15 +73,15 @@ class App extends Component {
           path="/"
           exact
           render={() => (
-            <Redirect to={firstPath} />
+            <Redirect to={{ pathname: firstPath, search }} />
           )}
         />
         <Route
           path="/brief"
           render={() => (
             <BriefPage
-              previousPath={previousPath}
-              nextPath={nextPath}
+              previousPath={{ pathname: previousPath, search }}
+              nextPath={{ pathname: nextPath, search }}
             />
           )}
         />
@@ -88,8 +89,8 @@ class App extends Component {
           path="/call"
           render={() => (
             <CallPage
-              previousPath={previousPath}
-              nextPath={nextPath}
+              previousPath={{ pathname: previousPath, search }}
+              nextPath={{ pathname: nextPath, search }}
             />
           )}
         />
@@ -97,8 +98,8 @@ class App extends Component {
           path="/confirmation"
           render={() => (
             <ConfirmationPage
-              previousPath={previousPath}
-              nextPath={nextPath}
+              previousPath={{ pathname: previousPath, search }}
+              nextPath={{ pathname: nextPath, search }}
             />
           )}
         />
@@ -106,8 +107,8 @@ class App extends Component {
           path="/plan"
           render={() => (
             <PlanPage
-              previousPath={previousPath}
-              nextPath={nextPath}
+              previousPath={{ pathname: previousPath, search }}
+              nextPath={{ pathname: nextPath, search }}
             />
           )}
         />

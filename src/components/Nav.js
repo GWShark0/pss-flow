@@ -10,13 +10,13 @@ function Nav(props) {
 
   return (
     <nav>
-      {previousPath && (
+      {previousPath.pathname && (
         <Button tag={Link} to={previousPath} color="link">
           Back
         </Button>
       )}
       {' '}
-      {nextPath && (
+      {nextPath.pathname && (
         <Button tag={Link} to={nextPath} color="primary">
           Next
         </Button>
