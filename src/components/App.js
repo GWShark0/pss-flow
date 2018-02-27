@@ -37,6 +37,25 @@ function getNextPath(flow = [], currentPath) {
   return (index >= 0) ? flow[index + 1] : undefined;
 }
 
+const routes = [
+  {
+    path: '/brief',
+    page: BriefPage,
+  },
+  {
+    path: '/call',
+    page: CallPage,
+  },
+  {
+    path: '/confirmation',
+    page: ConfirmationPage,
+  },
+  {
+    path: '/plan',
+    page: PlanPage,
+  },
+];
+
 class App extends Component {
 
   constructor(props) {
@@ -66,42 +85,18 @@ class App extends Component {
             <Redirect to={{ pathname: firstPath, search }} />
           )}
         />
-        <Route
-          path="/brief"
-          render={() => (
-            <BriefPage
-              previousPath={{ pathname: previousPath, search }}
-              nextPath={{ pathname: nextPath, search }}
-            />
-          )}
-        />
-        <Route
-          path="/call"
-          render={() => (
-            <CallPage
-              previousPath={{ pathname: previousPath, search }}
-              nextPath={{ pathname: nextPath, search }}
-            />
-          )}
-        />
-        <Route
-          path="/confirmation"
-          render={() => (
-            <ConfirmationPage
-              previousPath={{ pathname: previousPath, search }}
-              nextPath={{ pathname: nextPath, search }}
-            />
-          )}
-        />
-        <Route
-          path="/plan"
-          render={() => (
-            <PlanPage
-              previousPath={{ pathname: previousPath, search }}
-              nextPath={{ pathname: nextPath, search }}
-            />
-          )}
-        />
+        {routes.map(({ path, page: Page }) => (
+          <Route
+            key={path}
+            path={path}
+            render={() => (
+              <Page
+                previousPath={{ pathname: previousPath, search }}
+                nextPath={{ pathname: nextPath, search }}
+              />
+            )}
+          />
+        ))}
       </div>
     );
   }
