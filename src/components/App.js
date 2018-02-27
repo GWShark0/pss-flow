@@ -2,59 +2,15 @@ import React, { Component } from 'react';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
-import BriefPage from './BriefPage';
-import CallPage from './CallPage';
-import ConfirmationPage from './ConfirmationPage';
-import PlanPage from './PlanPage';
+import routes from '../util/routes';
+import {
+  getFlow,
+  getFirstPath,
+  getPreviousPath,
+  getNextPath,
+} from '../util/flows';
 
 import './App.css';
-
-const FLOWS = {
-  default: ['/plan', '/call', '/brief', '/confirmation'],
-  callFirst: ['/call', '/plan', '/confirmation'],
-};
-
-function getFlow(key) {
-  switch (key) {
-    case 'callFirst':
-      return FLOWS.callFirst;
-    default:
-      return FLOWS.default;
-  }
-}
-
-function getFirstPath(flow = []) {
-  return flow[0];
-}
-
-function getPreviousPath(flow = [], currentPath) {
-  const index = flow.indexOf(currentPath);
-  return (index >= 0) ? flow[index - 1] : undefined;
-}
-
-function getNextPath(flow = [], currentPath) {
-  const index = flow.indexOf(currentPath);
-  return (index >= 0) ? flow[index + 1] : undefined;
-}
-
-const routes = [
-  {
-    path: '/brief',
-    page: BriefPage,
-  },
-  {
-    path: '/call',
-    page: CallPage,
-  },
-  {
-    path: '/confirmation',
-    page: ConfirmationPage,
-  },
-  {
-    path: '/plan',
-    page: PlanPage,
-  },
-];
 
 class App extends Component {
 
