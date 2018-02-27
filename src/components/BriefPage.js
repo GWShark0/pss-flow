@@ -9,22 +9,27 @@ class BriefPage extends Component {
     return (
       <div>
         <h1>Brief</h1>
-        <div className="brief">
-          <Form>
-            <FormGroup row>
-              <Label for="name" sm={2}>Name</Label>
-              <Col sm={10}>
-                <Input type="text" name="name" placeholder="Your Name" />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="email" sm={2}>Email</Label>
-              <Col sm={10}>
-                <Input type="email" name="email" placeholder="Your Email" />
-              </Col>
-            </FormGroup>
-          </Form>
-        </div>
+        <Form className="brief">
+          {this.props.brief.map((field, i) => {
+            const { label, name, placeholder, type, value } = field;
+            return (
+              <FormGroup row key={name}>
+                <Label for={name} sm={2}>{label}</Label>
+                <Col sm={10}>
+                  <Input
+                    name={name}
+                    placeholder={placeholder}
+                    type={type}
+                    value={value}
+                    onChange={event =>
+                      this.props.onBriefChange(i, event.target.value)
+                    }
+                  />
+                </Col>
+              </FormGroup>
+            )
+          })}
+        </Form>
         <Nav
           previousPath={this.props.previousPath}
           nextPath={this.props.nextPath}

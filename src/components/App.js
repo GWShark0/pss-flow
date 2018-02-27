@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import cloneDeep from 'lodash/cloneDeep';
 
 import routes from '../util/routes';
 import {
@@ -17,11 +18,41 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    const query = queryString.parse(this.props.location.search);
-
     this.state = {
-      flow: getFlow(query.flow),
+      flow: getFlow(),
+      brief: [
+        {
+          label: 'Name',
+          name: 'name',
+          placeholder: 'Your Name',
+          type: 'text',
+          value: '',
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          placeholder: 'Your Email',
+          type: 'email',
+          value: '',
+        },
+      ],
+      time: '',
+      plan: '',
     }
+  }
+
+  onBriefChange = (index, value) => {
+    const brief = cloneDeep(this.state.brief);
+    brief[index].value = value;
+    this.setState({ brief });
+  }
+
+  onCallChange = (time) => {
+    this.setState({ time });
+  }
+
+  onPlanChange = (plan) => {
+    this.setState({ plan });
   }
 
   render() {
@@ -47,8 +78,14 @@ class App extends Component {
             path={path}
             render={() => (
               <Page
+                brief={this.state.brief}
+                time={this.state.time}
+                plan={this.state.plan}
                 previousPath={{ pathname: previousPath, search }}
                 nextPath={{ pathname: nextPath, search }}
+                onBriefChange={this.onBriefChange}
+                onCallChange={this.onCallChange}
+                onPlanChange={this.onPlanChange}
               />
             )}
           />
