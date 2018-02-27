@@ -1,0 +1,9 @@
+.plans {
+  display: flex;
+  justify-content: center;
+}
+
+.plans .card {
+  margin: 0 10px;
+  min-width: 180px;
+}

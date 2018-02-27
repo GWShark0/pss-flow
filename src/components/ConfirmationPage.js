@@ -5,7 +5,7 @@ class ConfirmationPage extends Component {
   render() {
     return (
       <div>
-        <h1>Confirmation Page</h1>
+        <h1>Confirmation</h1>
         <Nav
           previousPath={this.props.previousPath}
           nextPath={this.props.nextPath}

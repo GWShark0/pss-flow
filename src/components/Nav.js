@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
+import './Nav.css';
+
 function Nav(props) {
   const {
     previousPath,
@@ -9,7 +11,7 @@ function Nav(props) {
   } = props;
 
   return (
-    <nav>
+    <nav className="pss-nav">
       {previousPath.pathname && (
         <Button tag={Link} to={previousPath} color="link">
           Back
