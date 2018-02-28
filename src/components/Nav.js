@@ -26,4 +26,10 @@ function Nav(props) {
     </nav>
   )
 }
+
+Nav.defaultProps = {
+  previousPath: {},
+  nextPath: {},
+}
+
 export default Nav;
