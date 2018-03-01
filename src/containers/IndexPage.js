@@ -5,7 +5,7 @@ import Index from '../components/Index';
 import { getFirstPath, getFlow } from '../util/paths';
 
 const mapStateToProps = (state) => {
-  const search = state.routing.locationBeforeTransitions.search;
+  const search = state.routing.location.search;
   const query = queryString.parse(search);
   const flowKey = query.flow || '';
   const flow = flowKey ? getFlow(flowKey) : state.flow;

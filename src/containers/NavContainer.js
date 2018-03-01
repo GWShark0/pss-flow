@@ -3,7 +3,7 @@ import Nav from '../components/Nav';
 import { getPreviousPath, getNextPath } from '../util/paths';
 
 const mapStateToProps = (state) => {
-  const { pathname, search } = state.routing.locationBeforeTransitions;
+  const { pathname, search } = state.routing.location;
   const flow = state.flow;
   const previousPath = getPreviousPath(flow, pathname);
   const nextPath = getNextPath(flow, pathname);
