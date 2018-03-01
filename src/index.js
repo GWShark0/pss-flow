@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Provider } from 'react-redux'
-import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
+import { Provider } from 'react-redux';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
 import reducer from './reducers';
