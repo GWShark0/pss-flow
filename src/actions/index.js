@@ -18,3 +18,5 @@ export const changePlan = (plan) => ({
   type: 'CHANGE_PLAN',
   plan,
 });
+
+export const reset = () => ({ type: 'RESET' });

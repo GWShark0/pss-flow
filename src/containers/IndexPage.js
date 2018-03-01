@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { changeFlow } from '../actions';
+import { changeFlow, reset } from '../actions';
 import Index from '../components/Index';
 import { getFirstPath, getFlow } from '../util/paths';
 
@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onFlowChange: (key) => {
+    dispatch(reset());
     dispatch(changeFlow(key));
   }
 });
