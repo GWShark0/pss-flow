@@ -3,7 +3,9 @@ import { Redirect } from 'react-router-dom';
 
 class Index extends Component {
   componentDidMount() {
-    this.props.onFlowChange(this.props.flowKey);
+    if (this.props.flowKey) {
+      this.props.onFlowChange(this.props.flowKey);
+    }
   }
 
   render() {
