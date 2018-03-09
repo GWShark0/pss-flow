@@ -1,22 +1,10 @@
-export const changeField = (name, value) => ({
-  type: 'CHANGE_FIELD',
-  name,
-  value,
-});
+export const nextPage = () => ({ type: 'NEXT_PAGE' });
 
-export const changeFlow = (key) => ({
-  type: 'CHANGE_FLOW',
-  key,
-});
-
-export const changeTime = (time) => ({
-  type: 'CHANGE_TIME',
-  time,
-});
-
-export const changePlan = (plan) => ({
-  type: 'CHANGE_PLAN',
-  plan,
-});
+export const previousPage = () => ({ type: 'PREVIOUS_PAGE' });
 
 export const reset = () => ({ type: 'RESET' });
+
+export const setNextIndex = index => ({
+  type: 'SET_NEXT_INDEX',
+  index,
+});

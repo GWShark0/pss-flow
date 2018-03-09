@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import Nav from '../components/Nav';
-import { getPreviousPath, getNextPath } from '../util/paths';
+import { nextPage, previousPage } from '../actions';
 
-const mapStateToProps = (state) => {
-  const { pathname, search } = state.routing.location;
-  const flow = state.flow;
-  const previousPath = getPreviousPath(flow, pathname);
-  const nextPath = getNextPath(flow, pathname);
+const mapStateToProps = state => {
   return {
-    previousPath: { pathname: previousPath, search },
-    nextPath: { pathname: nextPath, search },
+    nextPage: state.flow.nextPage,
+    previousPage: state.flow.previousPage,
   };
-}
+};
 
-const NavContainer = connect(mapStateToProps)(Nav);
+const mapDispatchToProps = (dispatch) => ({});
+
+const NavContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Nav);
 
 export default NavContainer;

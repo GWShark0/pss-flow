@@ -1,18 +1,18 @@
-.plans {
+.options {
   display: flex;
   justify-content: center;
 }
 
-.plans .card {
+.options .card {
   margin: 0 10px;
   min-width: 180px;
 }
 
-.plans .card.is-selected {
+.options .card.is-selected {
   border-color: #28a745;
   background-color: rgba(40, 167, 69, 0.1);
 }
 
-.plan-title {
+.option-title {
   text-transform: capitalize;
 }

@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { setNextIndex}  from '../actions'
-import Index from '../components/Index';
+import SwitchBrief from '../components/SwitchBrief';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   setNextIndex: index => dispatch(setNextIndex(index)),
 });
 
-const IndexPage = connect(
+const SwitchBriefPage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(SwitchBrief);
 
-export default IndexPage;
+export default SwitchBriefPage;

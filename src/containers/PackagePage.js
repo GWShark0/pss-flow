@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
-import Brief from '../components/Brief';
+import Package from '../components/Package';
 
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({});
 
-const BriefPage = connect(
+const PackagePage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Brief);
+)(Package);
 
-export default BriefPage;
+export default PackagePage;
