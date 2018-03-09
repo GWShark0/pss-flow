@@ -1,8 +1,6 @@
 import React from 'react';
 import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import './Brief.css';
-
 function Brief(props) {
   return (
     <div>
@@ -19,9 +17,7 @@ function Brief(props) {
                   placeholder={placeholder}
                   type={type}
                   value={value}
-                  onChange={event =>
-                    props.onFieldChange(name, event.target.value)
-                  }
+                  onChange={event => props.onChange(name, event.target.value)}
                 />
               </Col>
             </FormGroup>
@@ -30,6 +26,11 @@ function Brief(props) {
       </Form>
     </div>
   );
+}
+
+Brief.defaultProps = {
+  brief: [],
+  onChange: () => {},
 }
 
 export default Brief;

@@ -1,14 +1,9 @@
 import { connect } from 'react-redux';
-import { changeTime } from '../actions';
 import Call from '../components/Call';
 
-const mapStateToProps = ({ time }) => ({ time });
+const mapStateToProps = state => state;
 
-const mapDispatchToProps = (dispatch) => ({
-  onTimeChange: (time) => {
-    dispatch(changeTime(time));
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 const CallPage = connect(
   mapStateToProps,

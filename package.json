@@ -6,6 +6,7 @@
     "bootstrap": "^4.0.0",
     "classnames": "^2.2.5",
     "history": "^4.7.2",
+    "immutable": "^3.8.2",
     "lodash": "^4.17.5",
     "query-string": "^5.1.0",
     "react": "^16.2.0",
@@ -17,7 +18,8 @@
     "react-scripts": "1.1.1",
     "reactstrap": "^5.0.0-beta",
     "redux": "^3.7.2",
-    "redux-persist": "^5.9.1"
+    "redux-persist": "^5.9.1",
+    "validator": "^9.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

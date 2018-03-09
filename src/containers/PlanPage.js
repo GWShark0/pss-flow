@@ -1,14 +1,9 @@
 import { connect } from 'react-redux';
-import { changePlan } from '../actions';
 import Plan from '../components/Plan';
 
-const mapStateToProps = ({ plan }) => ({ plan });
+const mapStateToProps = state => state;
 
-const mapDispatchToProps = (dispatch) => ({
-  onPlanChange: (plan) => {
-    dispatch(changePlan(plan));
-  }
-});
+const mapDispatchToProps = dispatch => ({});
 
 const PlanPage = connect(
   mapStateToProps,

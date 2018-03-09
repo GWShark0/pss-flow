@@ -1,22 +1,22 @@
 import React from 'react';
 import Options from './Options';
 
-const plans = ['monthly', 'annual'];
+const packages = ['basic', 'standard', 'pro'];
 
-function Plan(props) {
+function Package(props) {
   return (
     <div>
-      <h1>Plans</h1>
+      <h1>Packages</h1>
       <Options
-        options={plans}
+        options={packages}
         onClick={props.onChange}
       />
     </div>
   );
 }
 
-Plan.defaultProps = {
+Package.defaultProps = {
   onChange: () => {},
 }
 
-export default Plan;
+export default Package;
