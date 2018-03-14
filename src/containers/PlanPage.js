@@ -1,9 +1,15 @@
 import { connect } from 'react-redux';
+import { changeField } from '../actions';
+import { getPageFields } from '../util/pages';
 import Plan from '../components/Plan';
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+  form: getPageFields(state.form, 'plan'),
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  onChange: (name, value) => dispatch(changeField(name, value)),
+});
 
 const PlanPage = connect(
   mapStateToProps,

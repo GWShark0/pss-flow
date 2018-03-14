@@ -8,3 +8,9 @@ export const setNextIndex = index => ({
   type: 'SET_NEXT_INDEX',
   index,
 });
+
+export const changeField = (name, value) => ({
+  type: 'CHANGE_FIELD',
+  name,
+  value,
+});

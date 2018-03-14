@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
-import { setNextIndex}  from '../actions'
+import { setNextIndex }  from '../actions';
 import Index from '../components/Index';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  flowIndex: state.flow.index,
+});
 
 const mapDispatchToProps = dispatch => ({
   setNextIndex: index => dispatch(setNextIndex(index)),

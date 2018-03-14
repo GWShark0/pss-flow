@@ -26,6 +26,17 @@ function Nav(props) {
           Next
         </Button>
       )}
+      {' '}
+      {!props.nextPage && (
+        <Button
+          color="danger"
+          tag={Link}
+          to=""
+          onClick={props.reset}
+        >
+          Reset
+        </Button>
+      )}
     </nav>
   )
 }
@@ -33,6 +44,7 @@ function Nav(props) {
 Nav.defaultProps = {
   nextPage: '',
   previousPage: '',
+  reset: () => {}
 }
 
 export default Nav;

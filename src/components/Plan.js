@@ -1,5 +1,6 @@
 import React from 'react';
 import Options from './Options';
+import { getFieldValue } from '../util/pages';
 
 const plans = ['monthly', 'annual'];
 
@@ -9,13 +10,15 @@ function Plan(props) {
       <h1>Plans</h1>
       <Options
         options={plans}
-        onClick={props.onChange}
+        option={getFieldValue(props.form, 'plan')}
+        onClick={value => props.onChange('plan', value)}
       />
     </div>
   );
 }
 
 Plan.defaultProps = {
+  form: [],
   onChange: () => {},
 }
 

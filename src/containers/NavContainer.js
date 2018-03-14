@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
+import { reset }  from '../actions';
 import Nav from '../components/Nav';
-import { nextPage, previousPage } from '../actions';
 
-const mapStateToProps = state => {
-  return {
-    nextPage: state.flow.nextPage,
-    previousPage: state.flow.previousPage,
-  };
-};
+const mapStateToProps = state => ({
+  nextPage: state.flow.nextPage,
+  previousPage: state.flow.previousPage,
+});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  reset: () => dispatch(reset())
+});
 
 const NavContainer = connect(
   mapStateToProps,
