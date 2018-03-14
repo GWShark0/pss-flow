@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Form as RSForm, FormGroup, Label, Input } from 'reactstrap';
 
-function FormWrapper(props) {
+function Form(props) {
   return (
     <RSForm>
       {props.form.map(field => {
@@ -26,9 +26,9 @@ function FormWrapper(props) {
   )
 }
 
-FormWrapper.defaultProps = {
+Form.defaultProps = {
   form: [],
   onChange: () => {},
 }
 
-export default FormWrapper;
+export default Form;

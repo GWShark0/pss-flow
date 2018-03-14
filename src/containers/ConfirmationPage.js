@@ -1,8 +1,15 @@
 import { connect } from 'react-redux';
 import Confirmation from '../components/Confirmation';
 
-const mapStateToProps = state => ({ form: state.form });
+const mapStateToProps = state => ({
+  form: state.form
+});
 
-const ConfirmationPage = connect(mapStateToProps)(Confirmation);
+const mapDispatchToProps = dispatch => ({});
+
+const ConfirmationPage = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Confirmation);
 
 export default ConfirmationPage;

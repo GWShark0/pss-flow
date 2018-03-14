@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { setNextIndex }  from '../actions';
-import Index from '../components/Index';
+import SwitchFlow from '../components/SwitchFlow';
 
 const mapStateToProps = state => ({
   flowIndex: state.flow.index,
@@ -10,9 +10,9 @@ const mapDispatchToProps = dispatch => ({
   setNextIndex: index => dispatch(setNextIndex(index)),
 });
 
-const IndexPage = connect(
+const SwitchFlowPage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(SwitchFlow);
 
-export default IndexPage;
+export default SwitchFlowPage;

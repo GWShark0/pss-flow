@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import Options from './Options';
-import { getFieldValue, pickFields } from '../util/pages';
+import { getFieldValue, pickFields } from '../util/form';
 
 const times = ['1:00 PM', '2:00 PM', '3:00 PM'];
 

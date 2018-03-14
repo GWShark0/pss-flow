@@ -1,12 +1,5 @@
-export const INDEX_PAGE = {
-  name: 'index',
-  pathname: '/',
-  form: [],
-};
-
-export const BRIEF_PAGE = {
+export const BRIEF = {
   name: 'brief',
-  pathname: '/brief',
   form: [
     {
       label: 'Name',
@@ -34,9 +27,8 @@ export const BRIEF_PAGE = {
   ],
 };
 
-export const CALL_PAGE = {
+export const CALL = {
   name: 'call',
-  pathname: '/call',
   form: [
     {
       label: 'Name',
@@ -63,15 +55,13 @@ export const CALL_PAGE = {
   ],
 };
 
-export const CONFIRMATION_PAGE = {
+export const CONFIRMATION = {
   name: 'confirmation',
-  pathname: '/confirmation',
   form: [],
 };
 
-export const PACKAGE_PAGE = {
+export const PACKAGE = {
   name: 'package',
-  pathname: '/package',
   form: [
     {
       label: 'Package',
@@ -82,9 +72,8 @@ export const PACKAGE_PAGE = {
   ],
 };
 
-export const PLAN_PAGE = {
+export const PLAN = {
   name: 'plan',
-  pathname: '/plan',
   form: [
     {
       label: 'Plan',
@@ -95,47 +84,21 @@ export const PLAN_PAGE = {
   ],
 };
 
-export const SWITCH_BRIEF_PAGE = {
-  name: 'switchBrief',
-  pathname: '/switch-brief',
-  form: [],
-};
-
 const pages = [
-  INDEX_PAGE,
-  BRIEF_PAGE,
-  CALL_PAGE,
-  CONFIRMATION_PAGE,
-  PACKAGE_PAGE,
-  PLAN_PAGE,
-  SWITCH_BRIEF_PAGE,
+  BRIEF,
+  CALL,
+  CONFIRMATION,
+  PACKAGE,
+  PLAN,
 ];
 
-export const PAGES = pages.reduce((result, page) => {
-  result[page.name] = page;
-  return result;
-}, {});
+export const FORM = pages.reduce((result, page) => {
+  const form = page.form.map(field => ({ ...field, pagename: page.name }));
+  return result.concat(form);
+}, []);
 
-export const FORM = Object.values(pages.reduce((result, page) => {
-  for (let field of page.form) {
-    if (result[field.name]) {
-      result[field.name] = {
-        ...field,
-        ...result[field.name],
-        pages: result[field.name].pages.concat(page.name)
-      };
-    } else {
-      result[field.name] = {
-        ...field,
-        pages: [page.name]
-      };
-    }
-  }
-  return result;
-}, {}));
-
-export function getPageFields(form, page) {
-  return form.filter(field => field.pages.includes(page));
+export function getPageFields(form, pagename) {
+  return form.filter(field => field.pagename === pagename);
 }
 
 export function getFieldValue(form, name) {

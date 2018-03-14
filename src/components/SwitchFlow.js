@@ -3,7 +3,7 @@ import Options from './Options';
 
 const flows = ['call', 'brief', 'package'];
 
-function Index(props) {
+function SwitchFlow(props) {
   return (
     <div>
       <h1>Flows</h1>
@@ -26,9 +26,9 @@ function Index(props) {
   );
 }
 
-Index.defaultProps = {
+SwitchFlow.defaultProps = {
   flowIndex: 0,
   setNextIndex: () => {},
 }
 
-export default Index;
+export default SwitchFlow;

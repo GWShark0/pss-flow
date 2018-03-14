@@ -2,16 +2,16 @@ import get from 'lodash/get';
 import zipWith from 'lodash/zipWith';
 import flatten from 'lodash/flatten';
 
-export const INDEX = '/';
 export const BRIEF = '/brief';
 export const CALL = '/call';
 export const CONFIRMATION = '/confirmation';
 export const PACKAGE = '/package';
 export const PLAN = '/plan';
 export const SWITCH_BRIEF = '/switch-brief';
+export const SWITCH_FLOW = '/';
 
 export const FLOW_TREE = {
-	page: INDEX,
+	page: SWITCH_FLOW,
 	children: [
 		{
 			page: CALL,
@@ -116,7 +116,25 @@ export const FLOW_TREE = {
 	]
 }
 
-const traversal = stack => flatten(zipWith(stack, index => ['children', index]));
+export function isEmpty(stack = []) {
+  return stack.length === 0;
+}
+
+export function peek(stack = []) {
+  return stack[stack.length - 1];
+}
+
+export function pop(stack = []) {
+  return stack.slice(0, -1);
+}
+
+export function push(stack = [], index = 0) {
+  return stack.concat(index);
+}
+
+export function traversal(stack = []) {
+  return flatten(zipWith(stack, index => ['children', index]));
+}
 
 export function traverse(stack = []) {
   if (isEmpty(stack)) { return FLOW_TREE; }
@@ -128,12 +146,12 @@ export function currentPage(stack = []) {
 }
 
 export function nextPage(stack = [], index = 0) {
-  return traverse(push(stack, index));
+  return traverse(push(stack, index)) || {};
 }
 
 export function previousPage(stack = []) {
-  if (isEmpty(stack)) { return undefined; }
-  return traverse(pop(stack));
+  if (isEmpty(stack)) { return {}; }
+  return traverse(pop(stack)) || {};
 }
 
 export function indexFromPage(stack = [], page) {
@@ -149,20 +167,4 @@ export function isNextPage(stack = [], page) {
 export function isPreviousPage(stack = [], page) {
   const previous = get(previousPage(stack), 'page');
   return previous === page;
-}
-
-export function isEmpty(stack = []) {
-  return stack.length === 0;
-}
-
-export function peek(stack = []) {
-  return stack[stack.length - 1];
-}
-
-export function pop(stack = []) {
-  return stack.slice(0, -1);
-}
-
-export function push(stack = [], index = 0) {
-  return stack.concat(index);
 }

@@ -38,7 +38,7 @@ function Nav(props) {
         </Button>
       )}
     </nav>
-  )
+  );
 }
 
 Nav.defaultProps = {

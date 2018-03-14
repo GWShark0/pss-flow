@@ -1,37 +1,27 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import IndexPage from '../containers/IndexPage';
 import BriefPage from '../containers/BriefPage';
 import CallPage from '../containers/CallPage';
 import ConfirmationPage from '../containers/ConfirmationPage';
 import PackagePage from '../containers/PackagePage';
 import PlanPage from '../containers/PlanPage';
 import SwitchBriefPage from '../containers/SwitchBriefPage';
+import SwitchFlow from '../containers/SwitchFlowPage';
 import NavContainer from '../containers/NavContainer';
-
-import {
-  INDEX,
-  BRIEF,
-  CALL,
-  CONFIRMATION,
-  PACKAGE,
-  PLAN,
-  SWITCH_BRIEF,
-} from '../util/flow';
 
 import './App.css';
 
 function App() {
   return (
     <div className="app">
-      <Route path={INDEX} exact component={IndexPage} />
-      <Route path={BRIEF} component={BriefPage} />
-      <Route path={CALL} component={CallPage} />
-      <Route path={CONFIRMATION} component={ConfirmationPage} />
-      <Route path={PACKAGE} component={PackagePage} />
-      <Route path={PLAN} component={PlanPage} />
-      <Route path={SWITCH_BRIEF} component={SwitchBriefPage} />
+      <Route path="/" exact component={SwitchFlow} />
+      <Route path="/brief" component={BriefPage} />
+      <Route path="/call" component={CallPage} />
+      <Route path="/confirmation" component={ConfirmationPage} />
+      <Route path="/package" component={PackagePage} />
+      <Route path="/plan" component={PlanPage} />
+      <Route path="/switch-brief" component={SwitchBriefPage} />
       <NavContainer />
     </div>
   );
