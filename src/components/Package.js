@@ -1,5 +1,6 @@
 import React from 'react';
 import Options from './Options';
+import { getFieldValue } from '../util/pages';
 
 const packages = ['basic', 'standard', 'pro'];
 
@@ -9,7 +10,8 @@ function Package(props) {
       <h1>Packages</h1>
       <Options
         options={packages}
-        onClick={props.onChange}
+        option={getFieldValue(props.form, 'package')}
+        onClick={value => props.onChange('package', value)}
       />
     </div>
   );

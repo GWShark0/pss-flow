@@ -1,7 +1,7 @@
 import React from 'react';
 import Options from './Options';
 
-const options = ['yes', 'no'];
+const options = ['no', 'yes'];
 
 function SwitchBrief(props) {
   return (
@@ -9,6 +9,7 @@ function SwitchBrief(props) {
       <h1>Fill Out Brief?</h1>
       <Options
         options={options}
+        option={options[props.flowIndex]}
         onClick={option => {
           if (option === 'no') {
             props.setNextIndex(0);
@@ -22,6 +23,7 @@ function SwitchBrief(props) {
 }
 
 SwitchBrief.defaultProps = {
+  flowIndex: 0,
   setNextIndex: () => {},
 }
 

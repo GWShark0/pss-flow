@@ -1,5 +1,10 @@
 .app {
   margin: auto;
+  padding-top: 40px;
   max-width: 600px;
   text-align: center;
+}
+
+form {
+  text-align: left;
 }

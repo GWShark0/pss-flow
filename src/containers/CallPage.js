@@ -1,9 +1,15 @@
 import { connect } from 'react-redux';
+import { changeField } from '../actions';
+import { getPageFields } from '../util/pages';
 import Call from '../components/Call';
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+  form: getPageFields(state.form, 'call'),
+});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  onChange: (name, value) => dispatch(changeField(name, value)),
+});
 
 const CallPage = connect(
   mapStateToProps,
