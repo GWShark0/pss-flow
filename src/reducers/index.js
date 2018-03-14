@@ -9,15 +9,16 @@ import {
   previousPage,
   isNextPage,
   isPreviousPage,
+  indexFromPage,
 } from '../util/flow';
-import { FORM } from '../util/pages';
+import { FORM } from '../util/form';
 
 const initialFlow = {
   index: 0,
   stack: [],
   currentPage: currentPage([]).page,
   nextPage: nextPage([], 0).page,
-  previousPage: (previousPage([]) || {}).page,
+  previousPage: previousPage([]).page,
 };
 
 function flow(state = initialFlow, action) {
@@ -26,12 +27,14 @@ function flow(state = initialFlow, action) {
       const pathname = action.payload.pathname;
 
       if (isNextPage(state.stack, pathname)) {
+        const index = indexFromPage(state.stack, pathname)
+
         return {
           index: 0,
-          stack: push(state.stack, state.index),
-          currentPage: nextPage(state.stack, state.index).page,
-          nextPage: (nextPage(push(state.stack, state.index), 0) || {}).page,
-          previousPage: currentPage(state.stack).page,
+          stack: push(state.stack, index),
+          currentPage: nextPage(state.stack, index).page,
+          nextPage: nextPage(push(state.stack, index), 0).page,
+          previousPage: state.currentPage,
         };
       }
 
@@ -39,9 +42,9 @@ function flow(state = initialFlow, action) {
         return {
           index: peek(state.stack),
           stack: pop(state.stack),
-          currentPage: previousPage(state.stack).page,
-          nextPage: currentPage(state.stack).page,
-          previousPage: (previousPage(pop(state.stack)) || {}).page,
+          currentPage: state.previousPage,
+          nextPage: state.currentPage,
+          previousPage: previousPage(pop(state.stack)).page,
         };
       }
 
@@ -50,7 +53,7 @@ function flow(state = initialFlow, action) {
       return {
         ...state,
         index: action.index,
-        nextPage: (nextPage(state.stack, action.index) || {}).page,
+        nextPage: nextPage(state.stack, action.index).page,
       };
     case 'RESET':
       return initialFlow;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { changeField } from '../actions';
-import { getPageFields } from '../util/pages';
+import { getPageFields } from '../util/form';
 import Call from '../components/Call';
 
 const mapStateToProps = state => ({

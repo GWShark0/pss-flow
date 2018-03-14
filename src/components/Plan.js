@@ -1,6 +1,6 @@
 import React from 'react';
 import Options from './Options';
-import { getFieldValue } from '../util/pages';
+import { getFieldValue } from '../util/form';
 
 const plans = ['monthly', 'annual'];
 
