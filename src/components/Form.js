@@ -28,6 +28,7 @@ function Form(props) {
 
 Form.defaultProps = {
   form: [],
+  readOnly: false,
   onChange: () => {},
 }
 
