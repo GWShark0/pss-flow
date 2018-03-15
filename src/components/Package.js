@@ -18,6 +18,7 @@ function Package(props) {
 }
 
 Package.defaultProps = {
+  form: [],
   onChange: () => {},
 }
 
