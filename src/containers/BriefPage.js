@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { changeField } from '../actions';
-import { getPageFields } from '../util/form';
+import { getFieldsByPage } from '../util/form';
 import pages from '../util/pages';
 import Brief from '../components/Brief';
 
 const mapStateToProps = state => ({
-  form: getPageFields(state.form, pages.BRIEF),
+  form: getFieldsByPage(state.form, pages.BRIEF),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import Confirmation from '../components/Confirmation';
+import { dedupe } from '../util/form';
 
 const mapStateToProps = state => ({
-  form: state.form
+  form: dedupe(state.form),
 });
 
 const mapDispatchToProps = dispatch => ({});
