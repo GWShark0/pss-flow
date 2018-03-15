@@ -1,7 +1,8 @@
+import uniqBy from 'lodash/uniqBy';
 import pages from './pages';
 
 export const BRIEF = {
-  name: pages.BRIEF,
+  page: pages.BRIEF,
   form: [
     {
       label: 'Name',
@@ -30,7 +31,7 @@ export const BRIEF = {
 };
 
 export const CALL = {
-  name: pages.CALL,
+  page: pages.CALL,
   form: [
     {
       label: 'Name',
@@ -58,7 +59,7 @@ export const CALL = {
 };
 
 export const PACKAGE = {
-  name: pages.PACKAGE,
+  page: pages.PACKAGE,
   form: [
     {
       label: 'Package',
@@ -70,7 +71,7 @@ export const PACKAGE = {
 };
 
 export const PLAN = {
-  name: pages.PLAN,
+  page: pages.PLAN,
   form: [
     {
       label: 'Plan',
@@ -83,15 +84,13 @@ export const PLAN = {
 
 function spreadPages(pages) {
   return pages.reduce((result, page) => {
-    const form = page.form.map(field => ({ ...field, pagename: page.name }));
+    const form = page.form.map(field => ({ ...field, page: page.page }));
     return result.concat(form);
   }, []);
 }
 
-export const FORM = spreadPages([BRIEF, CALL, PACKAGE, PLAN]);
-
-export function getPageFields(form, pagename) {
-  return form.filter(field => field.pagename === pagename);
+export function getFieldsByPage(form, page) {
+  return form.filter(field => field.page === page);
 }
 
 export function getFieldValue(form, name) {
@@ -101,3 +100,9 @@ export function getFieldValue(form, name) {
 export function pickFields(form, names) {
   return form.filter(field => names.includes(field.name));
 }
+
+export function dedupe(form) {
+  return uniqBy(form, 'name');
+}
+
+export const FORM = spreadPages([BRIEF, CALL, PACKAGE, PLAN]);
