@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { reset }  from '../actions';
+import { next, previous, reset }  from '../actions';
 import Nav from '../components/Nav';
 
 const mapStateToProps = state => ({
@@ -8,6 +8,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  next: () => dispatch(next()),
+  previous: () => dispatch(previous()),
   reset: () => dispatch(reset())
 });
 

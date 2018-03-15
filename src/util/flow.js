@@ -1,32 +1,25 @@
 import get from 'lodash/get';
 import zipWith from 'lodash/zipWith';
 import flatten from 'lodash/flatten';
-
-export const BRIEF = '/brief';
-export const CALL = '/call';
-export const CONFIRMATION = '/confirmation';
-export const PACKAGE = '/package';
-export const PLAN = '/plan';
-export const SWITCH_BRIEF = '/switch-brief';
-export const SWITCH_FLOW = '/';
+import pages from './pages';
 
 export const FLOW_TREE = {
-	page: SWITCH_FLOW,
+	page: pages.SWITCH_FLOW,
 	children: [
 		{
-			page: CALL,
+			page: pages.CALL,
 			children: [
 				{
-					page: SWITCH_BRIEF,
+					page: pages.SWITCH_BRIEF,
 					children: [
 						{
-							page: PACKAGE,
+							page: pages.PACKAGE,
 							children: [
 								{
-									page: PLAN,
+									page: pages.PLAN,
 									children: [
 										{
-											page: CONFIRMATION,
+											page: pages.CONFIRMATION,
 											children: []
 										}
 									]
@@ -34,16 +27,16 @@ export const FLOW_TREE = {
 							]
 						},
             {
-							page: BRIEF,
+							page: pages.BRIEF,
 							children: [
 								{
-									page: PACKAGE,
+									page: pages.PACKAGE,
 									children: [
 										{
-											page: PLAN,
+											page: pages.PLAN,
 											children: [
 												{
-													page: CONFIRMATION,
+													page: pages.CONFIRMATION,
 													children: []
 												}
 											]
@@ -57,19 +50,19 @@ export const FLOW_TREE = {
 			]
 		},
 		{
-			page: BRIEF,
+			page: pages.BRIEF,
 			children: [
 				{
-					page: CALL,
+					page: pages.CALL,
 					children: [
 						{
-							page: PACKAGE,
+							page: pages.PACKAGE,
 							children: [
 								{
-									page: PLAN,
+									page: pages.PLAN,
 									children: [
 										{
-											page: CONFIRMATION,
+											page: pages.CONFIRMATION,
 											children: []
 										},
 									]
@@ -81,26 +74,26 @@ export const FLOW_TREE = {
 			]
 		},
 		{
-			page: PACKAGE,
+			page: pages.PACKAGE,
 			children: [
 				{
-					page: PLAN,
+					page: pages.PLAN,
 					children: [
 						{
-							page: CALL,
+							page: pages.CALL,
 							children: [
 								{
-									page: SWITCH_BRIEF,
+									page: pages.SWITCH_BRIEF,
 									children: [
                     {
-											page: CONFIRMATION,
+											page: pages.CONFIRMATION,
 											children: []
 										},
 										{
-											page: BRIEF,
+											page: pages.BRIEF,
 											children: [
 												{
-													page: CONFIRMATION,
+													page: pages.CONFIRMATION,
 													children: []
 												},
 											]
@@ -116,20 +109,20 @@ export const FLOW_TREE = {
 	]
 }
 
-export function isEmpty(stack = []) {
-  return stack.length === 0;
-}
-
-export function peek(stack = []) {
-  return stack[stack.length - 1];
+export function push(stack = [], index = 0) {
+  return stack.concat(index);
 }
 
 export function pop(stack = []) {
   return stack.slice(0, -1);
 }
 
-export function push(stack = [], index = 0) {
-  return stack.concat(index);
+export function peek(stack = []) {
+  return stack[stack.length - 1];
+}
+
+export function isEmpty(stack = []) {
+  return stack.length === 0;
 }
 
 export function traversal(stack = []) {
@@ -152,19 +145,4 @@ export function nextPage(stack = [], index = 0) {
 export function previousPage(stack = []) {
   if (isEmpty(stack)) { return {}; }
   return traverse(pop(stack)) || {};
-}
-
-export function indexFromPage(stack = [], page) {
-  const next = get(currentPage(stack), 'children', []).map(page => page.page);
-  return next.indexOf(page);
-}
-
-export function isNextPage(stack = [], page) {
-  const next = get(currentPage(stack), 'children', []).map(page => page.page);
-	return next.includes(page);
-}
-
-export function isPreviousPage(stack = [], page) {
-  const previous = get(previousPage(stack), 'page');
-  return previous === page;
 }

@@ -1,5 +1,7 @@
+import pages from './pages';
+
 export const BRIEF = {
-  name: 'brief',
+  name: pages.BRIEF,
   form: [
     {
       label: 'Name',
@@ -28,7 +30,7 @@ export const BRIEF = {
 };
 
 export const CALL = {
-  name: 'call',
+  name: pages.CALL,
   form: [
     {
       label: 'Name',
@@ -55,13 +57,8 @@ export const CALL = {
   ],
 };
 
-export const CONFIRMATION = {
-  name: 'confirmation',
-  form: [],
-};
-
 export const PACKAGE = {
-  name: 'package',
+  name: pages.PACKAGE,
   form: [
     {
       label: 'Package',
@@ -73,7 +70,7 @@ export const PACKAGE = {
 };
 
 export const PLAN = {
-  name: 'plan',
+  name: pages.PLAN,
   form: [
     {
       label: 'Plan',
@@ -84,18 +81,14 @@ export const PLAN = {
   ],
 };
 
-const pages = [
-  BRIEF,
-  CALL,
-  CONFIRMATION,
-  PACKAGE,
-  PLAN,
-];
+function spreadPages(pages) {
+  return pages.reduce((result, page) => {
+    const form = page.form.map(field => ({ ...field, pagename: page.name }));
+    return result.concat(form);
+  }, []);
+}
 
-export const FORM = pages.reduce((result, page) => {
-  const form = page.form.map(field => ({ ...field, pagename: page.name }));
-  return result.concat(form);
-}, []);
+export const FORM = spreadPages([BRIEF, CALL, PACKAGE, PLAN]);
 
 export function getPageFields(form, pagename) {
   return form.filter(field => field.pagename === pagename);

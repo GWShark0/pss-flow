@@ -1,16 +1,5 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
-import {
-  push,
-  pop,
-  peek,
-  currentPage,
-  nextPage,
-  previousPage,
-  isNextPage,
-  isPreviousPage,
-  indexFromPage,
-} from '../util/flow';
+import { push, pop, peek, currentPage, nextPage, previousPage } from '../util/flow';
 import { FORM } from '../util/form';
 
 const initialFlow = {
@@ -23,32 +12,25 @@ const initialFlow = {
 
 function flow(state = initialFlow, action) {
   switch (action.type) {
-    case '@@router/LOCATION_CHANGE':
-      const pathname = action.payload.pathname;
-
-      if (isNextPage(state.stack, pathname)) {
-        const index = indexFromPage(state.stack, pathname)
-
-        return {
-          index: 0,
-          stack: push(state.stack, index),
-          currentPage: nextPage(state.stack, index).page,
-          nextPage: nextPage(push(state.stack, index), 0).page,
-          previousPage: state.currentPage,
-        };
-      }
-
-      if (isPreviousPage(state.stack, pathname)) {
-        return {
-          index: peek(state.stack),
-          stack: pop(state.stack),
-          currentPage: state.previousPage,
-          nextPage: state.currentPage,
-          previousPage: previousPage(pop(state.stack)).page,
-        };
-      }
-
-      return state;
+    case 'NEXT_PAGE':
+      const nextStack = push(state.stack, state.index);
+      return {
+        index: 0,
+        stack: nextStack,
+        currentPage: state.nextPage,
+        nextPage: nextPage(nextStack, 0).page,
+        previousPage: state.currentPage,
+      };
+    case 'PREVIOUS_PAGE':
+      const index = peek(state.stack);
+      const previousStack = pop(state.stack);
+      return {
+        index,
+        stack: previousStack,
+        currentPage: state.previousPage,
+        nextPage: state.currentPage,
+        previousPage: previousPage(previousStack).page,
+      };
     case 'SET_NEXT_INDEX':
       return {
         ...state,
@@ -84,5 +66,4 @@ function form(state = FORM, action) {
 export default combineReducers({
   flow,
   form,
-  routing: routerReducer,
 });
