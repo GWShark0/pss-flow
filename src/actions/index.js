@@ -1,6 +1,6 @@
-export const nextPage = () => ({ type: 'NEXT_PAGE' });
+export const next = () => ({ type: 'NEXT_PAGE' });
 
-export const previousPage = () => ({ type: 'PREVIOUS_PAGE' });
+export const previous = () => ({ type: 'PREVIOUS_PAGE' });
 
 export const reset = () => ({ type: 'RESET' });
 
