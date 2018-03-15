@@ -7,6 +7,7 @@ import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 import reducer from './reducers';
 import App from './components/App';
+import { reset } from './actions';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
@@ -21,6 +22,8 @@ const devTools = (
 
 const store = createStore(persistedReducer, devTools);
 const persistor = persistStore(store);
+
+window.reset = () => store.dispatch(reset());
 
 render(
   <Provider store={store}>
