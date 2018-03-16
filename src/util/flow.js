@@ -20,11 +20,11 @@ export const FLOW_TREE = {
 									children: [
 										{
 											page: pages.CONFIRMATION,
-											children: []
-										}
-									]
-								}
-							]
+											children: [],
+										},
+									],
+								},
+							],
 						},
             {
 							page: pages.BRIEF,
@@ -37,17 +37,17 @@ export const FLOW_TREE = {
 											children: [
 												{
 													page: pages.CONFIRMATION,
-													children: []
-												}
-											]
-										}
-									]
-								}
-							]
-						}
-					]
-				}
-			]
+													children: [],
+												},
+											],
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			],
 		},
 		{
 			page: pages.BRIEF,
@@ -63,15 +63,15 @@ export const FLOW_TREE = {
 									children: [
 										{
 											page: pages.CONFIRMATION,
-											children: []
+											children: [],
 										},
-									]
+									],
 								},
-							]
+							],
 						},
-					]
+					],
 				},
-			]
+			],
 		},
 		{
 			page: pages.PACKAGE,
@@ -87,26 +87,26 @@ export const FLOW_TREE = {
 									children: [
                     {
 											page: pages.CONFIRMATION,
-											children: []
+											children: [],
 										},
 										{
 											page: pages.BRIEF,
 											children: [
 												{
 													page: pages.CONFIRMATION,
-													children: []
+													children: [],
 												},
-											]
+											],
 										},
-									]
+									],
 								},
-							]
+							],
 						},
-					]
+					],
 				},
-			]
+			],
 		},
-	]
+	],
 }
 
 export function push(stack = [], index = 0) {
