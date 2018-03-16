@@ -9,8 +9,8 @@ function SwitchFlow(props) {
       <h1>Flows</h1>
       <Options
         options={flows}
-        option={flows[props.flowIndex]}
-        onClick={flow => {
+        value={flows[props.flowIndex]}
+        onChange={flow => {
           if (flow === flows[0]) {
             props.setNextIndex(0);
           }

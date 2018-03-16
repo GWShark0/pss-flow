@@ -1,23 +1,22 @@
 import React from 'react';
 import Options from './Options';
-import { getFieldValue } from '../util/form';
-
-const packages = ['basic', 'standard', 'pro'];
+import { getFieldByName } from '../util/form';
 
 function Package(props) {
   return (
     <div>
       <h1>Packages</h1>
       <Options
-        options={packages}
-        option={getFieldValue(props.form, 'package')}
-        onClick={value => props.onChange('package', value)}
+        {...getFieldByName(props.form, 'package')}
+        showErrors={props.showErrors}
+        onChange={value => props.onChange('package', value)}
       />
     </div>
   );
 }
 
 Package.defaultProps = {
+  showErrors: false,
   form: [],
   onChange: () => {},
 }

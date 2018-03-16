@@ -5,6 +5,7 @@ export const BRIEF = {
   page: pages.BRIEF,
   form: [
     {
+      feedback: 'Please provide your name.',
       label: 'Name',
       name: 'name',
       placeholder: 'Your Name',
@@ -13,6 +14,7 @@ export const BRIEF = {
       value: '',
     },
     {
+      feedback: 'Please provide a valid email address.',
       label: 'Email',
       name: 'email',
       placeholder: 'Your Email',
@@ -21,6 +23,7 @@ export const BRIEF = {
       value: '',
     },
     {
+      feedback: 'Please provide a valid phone number.',
       label: 'Phone',
       name: 'phone',
       placeholder: 'Your Phone',
@@ -34,6 +37,7 @@ export const CALL = {
   page: pages.CALL,
   form: [
     {
+      feedback: 'Please provide your name.',
       label: 'Name',
       name: 'name',
       placeholder: 'Your Name',
@@ -42,6 +46,7 @@ export const CALL = {
       value: '',
     },
     {
+      feedback: 'Please provide a valid phone number.',
       label: 'Phone',
       name: 'phone',
       placeholder: 'Your Phone',
@@ -50,8 +55,10 @@ export const CALL = {
       value: '',
     },
     {
+      feedback: 'Please select a time for your call.',
       label: 'Time',
       name: 'time',
+      options: ['1:00 PM', '2:00 PM', '3:00 PM'],
       required: true,
       value: '',
     },
@@ -62,8 +69,10 @@ export const PACKAGE = {
   page: pages.PACKAGE,
   form: [
     {
+      feedback: 'Please choose a package.',
       label: 'Package',
       name: 'package',
+      options: ['basic', 'standard', 'pro'],
       required: true,
       value: '',
     },
@@ -74,8 +83,10 @@ export const PLAN = {
   page: pages.PLAN,
   form: [
     {
+      feedback: 'Please choose a plan.',
       label: 'Plan',
       name: 'plan',
+      options: ['monthly', 'annual'],
       required: true,
       value: '',
     },
@@ -89,16 +100,22 @@ function spreadPages(pages) {
   }, []);
 }
 
-export function getFieldsByPage(form, page) {
-  return form.filter(field => field.page === page);
+export function getFieldsByPage(form = [], pages) {
+  pages = [].concat(pages);
+  return form.filter(field => pages.includes(field.page));
 }
 
-export function getFieldValue(form, name) {
-  return (form.find(field => field.name === name) || {}).value;
-}
-
-export function pickFields(form, names) {
+export function getFieldsByName(form = [], names) {
+  names = [].concat(names);
   return form.filter(field => names.includes(field.name));
+}
+
+export function getFieldByName(form = [], name) {
+  return form.find(field => field.name === name) || {};
+}
+
+export function getValueByName(form, name) {
+  return getFieldByName(form, name).value;
 }
 
 export function dedupe(form) {

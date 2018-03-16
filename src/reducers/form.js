@@ -1,19 +1,22 @@
 import { FORM } from '../util/form';
+import { validateField, validateForm } from '../util/validation';
 
-function form(state = FORM, action) {
+const INITIAL_FORM = validateForm(FORM);
+
+function form(state = INITIAL_FORM, action) {
   switch (action.type) {
     case 'CHANGE_FIELD':
       return state.map(field => {
         if (field.name === action.name) {
-          return {
+          return validateField({
             ...field,
             value: action.value,
-          };
+          });
         }
         return field;
-      })
+      });
     case 'RESET':
-      return FORM;
+      return INITIAL_FORM;
     default:
       return state;
   }

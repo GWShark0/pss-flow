@@ -9,8 +9,8 @@ function SwitchBrief(props) {
       <h1>Fill Out Brief?</h1>
       <Options
         options={options}
-        option={options[props.flowIndex]}
-        onClick={option => {
+        value={options[props.flowIndex]}
+        onChange={option => {
           if (option === 'no') {
             props.setNextIndex(0);
           } else {

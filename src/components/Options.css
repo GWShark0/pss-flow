@@ -1,18 +1,30 @@
 .options {
+
+}
+
+.options__content {
   display: flex;
   justify-content: center;
 }
 
-.options .card {
-  margin: 0 10px;
+.options__card {
+  flex: 1;
   min-width: 180px;
 }
 
-.options .card.is-selected {
+.options__card:not(:first-child) {
+  margin-left: 10px;
+}
+
+.options__card:not(:last-child) {
+  margin-right: 10px;
+}
+
+.options__card.is-selected {
   border-color: #28a745;
   background-color: rgba(40, 167, 69, 0.1);
 }
 
-.option-title {
+.options__title {
   text-transform: capitalize;
 }
