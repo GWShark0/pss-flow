@@ -5,12 +5,13 @@ function Brief(props) {
   return (
     <div>
       <h1>Brief</h1>
-      <Form form={props.form} onChange={props.onChange} />
+      <Form {...props} />
     </div>
   );
 }
 
 Brief.defaultProps = {
+  showErrors: false,
   form: [],
   onChange: () => {},
 }

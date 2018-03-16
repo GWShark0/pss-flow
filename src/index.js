@@ -12,7 +12,11 @@ import { reset } from './actions';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-const persistConfig = { key: 'root', storage };
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['showErrors'],
+};
 const persistedReducer = persistReducer(persistConfig, reducer);
 
 const devTools = (

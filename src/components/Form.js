@@ -1,35 +1,35 @@
 import React from 'react';
-import { Col, Form as RSForm, FormGroup, Label, Input } from 'reactstrap';
+import { Col, Form, FormFeedback, FormGroup, Label, Input } from 'reactstrap';
 
-function Form(props) {
+function FormWrapper(props) {
   return (
-    <RSForm>
+    <Form>
       {props.form.map(field => {
-        const { label, name, placeholder, type, value } = field;
+        const { feedback, label, name, valid, ...rest } = field;
         return (
           <FormGroup row key={name}>
             <Label for={name} sm={2}>{label}</Label>
             <Col sm={10}>
               <Input
+                {...rest}
                 name={name}
-                placeholder={placeholder}
-                type={type}
-                value={value}
-                onChange={event => props.onChange(name, event.target.value)}
                 readOnly={props.readOnly}
+                valid={(props.readOnly || !props.showErrors) ? undefined : valid}
+                onChange={event => props.onChange(name, event.target.value)}
               />
+              <FormFeedback>{feedback}</FormFeedback>
             </Col>
           </FormGroup>
         );
       })}
-    </RSForm>
-  )
+    </Form>
+  );
 }
 
-Form.defaultProps = {
+FormWrapper.defaultProps = {
   form: [],
   readOnly: false,
   onChange: () => {},
 }
 
-export default Form;
+export default FormWrapper;

@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
-import { next, previous, reset }  from '../actions';
+import { next, previous, showErrors, reset }  from '../actions';
+import { getFieldsByPage } from '../util/form';
 import Nav from '../components/Nav';
 
 const mapStateToProps = state => ({
+  form: getFieldsByPage(state.form, state.flow.currentPage),
   nextPage: state.flow.nextPage,
   previousPage: state.flow.previousPage,
 });
@@ -10,6 +12,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   next: () => dispatch(next()),
   previous: () => dispatch(previous()),
+  showErrors: () => dispatch(showErrors()),
   reset: () => dispatch(reset())
 });
 
